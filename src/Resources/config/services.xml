@@ -5,6 +5,48 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="Sas\WarrantyManager\Command\ImportWarrantyProduct">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="customer.repository"/>
+            <argument id="sas_warranty_manager_product.repository" type="service"/>
+            <argument type="service" id="logger"/>
+        </service>
+
+
+        <service id="Sas\WarrantyManager\Service\ImportWarrantyService">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="customer.repository"/>
+            <argument id="sas_warranty_manager_product.repository" type="service"/>
+        </service>
+
+
+        <service id="Sas\WarrantyManager\Command\TestImportCSVProductWarranty">
+            <argument type="service" id="Sas\WarrantyManager\Command\ImportWarrantyProduct"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Sas\WarrantyManager\Content\ProductWarranty\ProductWarrantyDefinition">
+            <tag name="shopware.entity.definition"/>
+        </service>
+
+        <!-- DECORATORS -->
+        <service id="Sas\WarrantyManager\Content\Decorator\ImportExportFactoryDecorator"
+                 decorates="Shopware\Core\Content\ImportExport\ImportExportFactory">
+            <argument type="service" id="Sas\WarrantyManager\Content\Decorator\ImportExportFactoryDecorator.inner"/>
+            <argument type="service" id="Shopware\Core\Content\ImportExport\Service\ImportExportService"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
+            <argument type="service" id="shopware.filesystem.private"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="import_export_log.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Content\ImportExport\Service\FileService"/>
+
+            <argument type="tagged" tag="shopware.import_export.reader_factory"/>
+            <argument type="tagged" tag="shopware.import_export.writer_factory"/>
+            <argument type="tagged" tag="shopware.import_export.pipe_factory"/>
+            <argument type="service" id="logger"/>
+            <argument type="service" id="Sas\WarrantyManager\Service\ImportWarrantyService"/>
+        </service>
 
     </services>
 </container>

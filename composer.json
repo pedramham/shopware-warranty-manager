@@ -1,18 +1,45 @@
 {
-  "name": "swag/plugin-skeleton",
-  "description": "Skeleton plugin",
+  "name": "sas/warranty-manager",
+  "description": "This plugin allows you to manage customer warranties in Shopware 6. You can also import and export warranty data using CSV files, which makes it easy to transfer and backup your data. This plugin is useful for merchants who want to provide better customer service and keep track of their warranty obligations.",
   "type": "shopware-platform-plugin",
+  "version": "1",
   "license": "MIT",
+  "authors":[
+    {
+      "name": "Morteza Shabani",
+      "email": "pedramham1@gmail.com",
+      "role": "Developer"
+    }
+  ],
   "autoload": {
     "psr-4": {
-      "WarrantyManager\\": "src/"
+      "Sas\\WarrantyManager\\": "src/"
     }
   },
+  "require": {
+    "shopware/core": "^6.5.0.0",
+    "shopware/administration": "^6.5.0.0",
+    "shopware/storefront": "^6.5.0.0"
+  },
+  "require-dev":{
+    "phpunit/phpunit": "^9.5",
+    "symplify/easy-coding-standard": "^9.3.12",
+    "phpstan/phpstan": "^1.8",
+    "phpcompatibility/php-compatibility": "^9.3",
+    "squizlabs/php_codesniffer": "^3.6",
+    "infection/infection": "^0.25.4"
+  },
+
   "extra": {
-    "shopware-plugin-class": "WarrantyManager\\WarrantyManager",
+    "shopware-plugin-class": "Sas\\WarrantyManager\\SasWarrantyManager",
+    "plugin-icon": "src/Resources/config/warranty-manager-icon.png",
     "label": {
-      "de-DE": "Skeleton plugin",
-      "en-GB": "Skeleton plugin"
+      "de-DE": "Warranty Manager",
+      "en-GB": "Warranty Manager"
+    },
+    "description": {
+      "de-DE": "Mit diesem Plugin können Sie Kundengarantien in Shopware 6 verwalten. Darüber hinaus können Sie Garantiedaten mithilfe von CSV-Dateien importieren und exportieren, was die Übertragung und Sicherung Ihrer Daten erleichtert. Dieses Plugin ist nützlich für Händler, die einen besseren Kundenservice bieten und den Überblick über ihre Garantieverpflichtungen behalten möchten.",
+      "en-GB": "This plugin allows you to manage customer warranties in Shopware 6. You can also import and export warranty data using CSV files, which makes it easy to transfer and backup your data. This plugin is useful for merchants who want to provide better customer service and keep track of their warranty obligations."
     }
   }
 }
