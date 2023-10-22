@@ -59,8 +59,8 @@ class ImportExportFactoryDecorator extends ImportExportFactory
     public function create(string $logId, int $importBatchSize = 250, int $exportBatchSize = 250): ImportExport
     {
         /**
- * @var ImportExportLogEntity $logEntity 
-*/
+         * @var ImportExportLogEntity $logEntity
+         */
         $logEntity = self::callPrivateMethod($this, 'findLog', [$logId]);
 
         // If the user select 'Warranty import profile' in admin panel

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Sas\WarrantyManager\Service;
 
-use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -27,7 +26,7 @@ class ImportWarrantyService
         $this->warrantyManagerProductRepository = $warrantyManagerProductRepository;
     }
 
-    public function importWarranty(Context $context, $arrayProductWarranty): bool
+    public function importWarranty(Context $context, array $arrayProductWarranty): bool
     {
         $productNumber = $this->getProductId($context, $arrayProductWarranty[0]);
         $customerNumber = $this->getCustomerId($context, $arrayProductWarranty[1]);

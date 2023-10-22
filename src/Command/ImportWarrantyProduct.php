@@ -30,7 +30,7 @@ class ImportWarrantyProduct
         $this->logger = $logger;
     }
 
-    public function importWarranty()
+    public function importWarranty(): void
     {
         $context = Context::createDefaultContext();
         $arrayProductWarranties = $this->getCsvFile();
@@ -90,7 +90,7 @@ class ImportWarrantyProduct
         return $this->customerRepository->searchIds($criteria, $context)->firstId();
     }
 
-    private function createWarrantyManagerProduct(Context $context, $productId, $customer, ?string $warrantyText, int $warrantyDuration): void
+    private function createWarrantyManagerProduct(Context $context, string $productId, string $customer, ?string $warrantyText, int $warrantyDuration): void
     {
         $this->warrantyManagerProductRepository->create(
             [

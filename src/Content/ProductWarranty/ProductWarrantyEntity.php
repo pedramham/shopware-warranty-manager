@@ -21,7 +21,7 @@ class ProductWarrantyEntity extends Entity
 
     use EntityCustomFieldsTrait;
 
-    protected int $warrantyDuration;
+    protected ?int $warrantyDuration;
 
     protected ?string $warrantyText;
 
