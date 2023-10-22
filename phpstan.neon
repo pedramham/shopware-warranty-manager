@@ -1,0 +1,22 @@
+parameters:
+    level: 6
+    tmpDir: var/cache/phpstan
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    reportUnmatchedIgnoredErrors: false
+
+    paths:
+        -   src
+        -   tests
+
+
+    ignoreErrors:
+        -   '#is never read, only written#'
+        -   '#Deprecated in PHP 8.0: Required parameter#'
+        -   '#return type has no value type specified in iterable type array#'
+        -   '#with no value type specified in iterable type array#'
+        -   '#with no value type specified in iterable type iterable#'
+
+    bootstrapFiles:
+        -   bin/static-analyze-autoloader.php

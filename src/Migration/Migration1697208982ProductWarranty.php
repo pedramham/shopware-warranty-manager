@@ -56,18 +56,19 @@ class Migration1697208982ProductWarranty extends MigrationStep
         // we need to add import-export because we will export failed rows in case of exception
 
         $connection->insert(
-            'import_export_profile', [
-            'id' => $id,
-            'name' => WarrantyImportStatics::PROFILE_NAME,
-            'system_default' => 1,
-            // we need to prevent user to modify or remove this profile, that's why its 1
-            'source_entity' => 'sas_warranty_manager_product',
-            'file_type' => 'text/csv',
-            'delimiter' => ',',
-            'enclosure' => '"',
-            'type' => ImportExportProfileEntity::TYPE_IMPORT_EXPORT,
-            'mapping' => json_encode([]),
-            'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+            'import_export_profile',
+            [
+                'id' => $id,
+                'name' => WarrantyImportStatics::PROFILE_NAME,
+                'system_default' => 1,
+                // we need to prevent user to modify or remove this profile, that's why its 1
+                'source_entity' => 'sas_warranty_manager_product',
+                'file_type' => 'text/csv',
+                'delimiter' => ',',
+                'enclosure' => '"',
+                'type' => ImportExportProfileEntity::TYPE_IMPORT_EXPORT,
+                'mapping' => json_encode([]),
+                'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
             ]
         );
 

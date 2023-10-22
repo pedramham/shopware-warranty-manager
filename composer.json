@@ -16,18 +16,18 @@
       "Sas\\WarrantyManager\\": "src/"
     }
   },
-  "require": {
-    "shopware/core": "^6.5.0.0",
-    "shopware/administration": "^6.5.0.0",
-    "shopware/storefront": "^6.5.0.0"
+  "autoload-dev": {
+    "psr-4": {
+      "WarrantyManager\\Tests\\": "tests/"
+    }
   },
+
   "require-dev":{
-    "phpunit/phpunit": "^9.5",
     "symplify/easy-coding-standard": "^9.3.12",
-    "phpstan/phpstan": "^1.8",
     "phpcompatibility/php-compatibility": "^9.3",
     "squizlabs/php_codesniffer": "^3.6",
-    "infection/infection": "^0.25.4"
+    "infection/infection": "^0.25.4",
+    "phpstan/phpstan": "^1.8"
   },
 
   "extra": {
@@ -40,6 +40,21 @@
     "description": {
       "de-DE": "Mit diesem Plugin können Sie Kundengarantien in Shopware 6 verwalten. Darüber hinaus können Sie Garantiedaten mithilfe von CSV-Dateien importieren und exportieren, was die Übertragung und Sicherung Ihrer Daten erleichtert. Dieses Plugin ist nützlich für Händler, die einen besseren Kundenservice bieten und den Überblick über ihre Garantieverpflichtungen behalten möchten.",
       "en-GB": "This plugin allows you to manage customer warranties in Shopware 6. You can also import and export warranty data using CSV files, which makes it easy to transfer and backup your data. This plugin is useful for merchants who want to provide better customer service and keep track of their warranty obligations."
+    }
+  },
+  "scripts": {
+    "lint": [
+      "@phpunit"
+    ],
+    "phpstan": [
+      "../../../vendor/bin/phpstan analyze"
+    ]
+  },
+
+  "config": {
+    "allow-plugins": {
+      "infection/extension-installer": true,
+      "symfony/runtime": true
     }
   }
 }

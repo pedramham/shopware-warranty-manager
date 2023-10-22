@@ -27,3 +27,26 @@ php bin/console warrantyManager:importCsv
 </pre>
 </ul>
 
+## How-To Guide
+
+This is a simple plugin that allows you to manage warranties for your products. The plugin uses a [one-to-one](https://developer.shopware.com/docs/guides/plugins/plugins/framework/data-handling/add-data-associations.html#one-to-one-associations) relationship in the [ProductWarrantyDefinition](https://github.com/pedramham/shopware-warranty-manager/blob/master/src/Content/ProductWarranty/ProductWarrantyDefinition.php) class, but you can adjust it to use a many-to-many relationship if needed.
+
+The [sas_warranty_manager_product](https://github.com/pedramham/shopware-warranty-manager/blob/master/src/Migration/Migration1697208982ProductWarranty.php) table has two fields: `warrantyDuration` and `warrantyText` for manage warranty. You can add more fields such as `image`, `icon`, `price`, etc. if needed.
+
+According to the Shopware core codes, I used the [ImportExportFactoryDecorator](https://github.com/pedramham/shopware-warranty-manager/blob/master/src/Content/Decorator/ImportExportFactoryDecorator.php) decorator. The [WarrantyManager](https://github.com/pedramham/shopware-warranty-manager/blob/master/src/Content/Decorator/WarrantyManager.php) class gets a CSV file from the administration panel and uses the [makeWarrantiesArray](https://github.com/pedramham/shopware-warranty-manager/blob/master/src/Content/Decorator/WarrantyManager.php#L219) method to create an array.
+The [ImportWarrantyService](https://github.com/pedramham/shopware-warranty-manager/blob/master/src/Service/ImportWarrantyService.php) class is then used to import the data into the database. If you add more fields, you can adjust the [ImportWarrantyService](https://github.com/pedramham/shopware-warranty-manager/blob/master/src/Service/ImportWarrantyService.php#L30) class accordingly.
+
+##Tools
+####Fixing Issues with ECS
+To start using [ECS](https://github.com/easy-coding-standard/easy-coding-standard), just run it, If you're sure, go for a fix command:
+<pre>
+vendor/bin/ecs check src --fix
+</pre>
+####Running Unit Tests with PHPUnit
+<pre>
+./vendor/bin/phpunit --configuration="custom/plugins/WarrantyManager"
+</pre>
+####Analyzing PHP Code with PHPStan
+<pre>
+vendor/bin/phpstan analyse src
+</pre>

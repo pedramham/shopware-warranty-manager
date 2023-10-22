@@ -178,8 +178,8 @@ class WarrantyManager extends ImportExport
         if ($this->reader->getOffset() === $this->filesystem->fileSize($path)) {
             if ($this->logEntity->getInvalidRecordsLog() instanceof ImportExportLogEntity) {
                 /**
- * @var ImportExportLogEntity $invalidLog 
-*/
+                 * @var ImportExportLogEntity $invalidLog
+                 */
                 $invalidLog = $this->logEntity->getInvalidRecordsLog();
                 $invalidRecordsProgress ??= $this->importExportService->getProgress($invalidLog->getId(), $invalidLog->getRecords());
 
@@ -216,7 +216,7 @@ class WarrantyManager extends ImportExport
          *   ],
          *   .....
      */
-    private function makeWarrantiesArray(iterable $csvRows): ?array
+    private function makeWarrantiesArray(iterable $csvRows): array
     {
         $arrayWarranties = null;
         $result = [];
